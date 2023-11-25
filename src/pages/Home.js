@@ -24,17 +24,15 @@ export default function Home() {
       document.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
+
   return (
     <>
       <HomePage>
-        <div
-          className="follow-cursor"
-          style={{ left: cursorPosition.x, top: cursorPosition.y }}
-        >
+        <FollowCursor style={{ left: cursorPosition.x, top: cursorPosition.y }}>
           <div></div>
           <div></div>
           <div></div>
-        </div>
+        </FollowCursor>
         <HomeMainContainer>
           <HomeProfileContainer>
             <HomeProfile>
@@ -89,6 +87,41 @@ export default function Home() {
   );
 }
 
+const FollowCursor = styled.div`
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: transform 0.1s ease-out;
+  filter: blur(20px);
+  &:hover {
+    transform: scale(1.5);
+  }
+  div:nth-child(1) {
+    width: 100px;
+    height: 100px;
+    background-color: #003da78d;
+    position: absolute;
+    border-radius: 50%;
+    top: 40px;
+  }
+  div:nth-child(2) {
+    width: 100px;
+    height: 100px;
+    background-color: #03125783;
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+  div:nth-child(3) {
+    width: 100px;
+    height: 100px;
+    background-color: #38a0e157;
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+  }
+`;
 const HomePage = styled.div`
   height: 85vh;
   /* border: 1px solid red; */
