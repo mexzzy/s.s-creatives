@@ -105,3 +105,38 @@ html {
   display: inline-block;
 }
 
+.follow-cursor {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: transform 0.1s ease-out;
+  filter: blur(20px);
+}
+.follow-cursor div:nth-child(1) {
+  width: 100px;
+  height: 100px;
+  background-color: #003da78d;
+  position: absolute;
+  border-radius: 50%;
+  top: 40px;
+}
+.follow-cursor div:nth-child(2) {
+  width: 100px;
+  height: 100px;
+  background-color: #03125783;
+  border-radius: 50%;
+   position: absolute;
+  top: 20px;
+  left: 20px;
+}
+.follow-cursor div:nth-child(3) {
+  width: 100px;
+  height: 100px;
+  background-color: #38a0e157;
+  border-radius: 50%;
+   position: absolute;
+  top: 20px;
+}
+.follow-cursor:hover {
+  transform: scale(1.5);
+}

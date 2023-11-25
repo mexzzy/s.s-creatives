@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
 import profile from "../images/PROFILE-PIC.png";
 import {
@@ -10,64 +10,83 @@ import {
   BiSolidQuoteAltRight,
 } from "react-icons/bi";
 
-export default class Home extends Component {
-  render() {
-    return (
-      <>
-        <HomePage>
-          <HomeMainContainer>
-            <HomeProfileContainer>
-              <HomeProfile>
-                <img src={profile} alt="profile" />
-                <span>samuel shadrach</span>
-              </HomeProfile>
-              <HomeContact>
-                <a
-                  href="https://instagram.com/s.s_graphiks"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <BiLogoInstagram size="20" />
-                  <span>Instagram</span>
-                </a>
-                <a
-                  href="https://wa.me/+2348169349195"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <BiLogoWhatsapp size="20" />
-                  <span>WhatsApp</span>
-                </a>
-                <a
-                  href="https://t.me/shedy101"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <BiLogoTelegram size="20" />
-                  <span>Telegram</span>
-                </a>
-              </HomeContact>
-            </HomeProfileContainer>
+export default function Home() {
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
 
-            <HomeQuotes>
-              <div>
-                <BiSolidQuoteAltLeft />
-                <span>Design is not just an art, its a lifestyle.</span>
-                <BiSolidQuoteAltRight />
-              </div>
-              <div>
-                <span>-S.S Graphics</span>
-              </div>
-            </HomeQuotes>
-          </HomeMainContainer>
-          <Scroll>
-            <span>scroll down</span>
-            <BiArrowToBottom />
-          </Scroll>
-        </HomePage>
-      </>
-    );
-  }
+  const handleMouseMove = (e) => {
+    setCursorPosition({ x: e.clientX, y: e.clientY });
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
+  return (
+    <>
+      <HomePage>
+        <div
+          className="follow-cursor"
+          style={{ left: cursorPosition.x, top: cursorPosition.y }}
+        >
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <HomeMainContainer>
+          <HomeProfileContainer>
+            <HomeProfile>
+              <img src={profile} alt="profile" />
+              <span>samuel shadrach</span>
+            </HomeProfile>
+            <HomeContact>
+              <a
+                href="https://instagram.com/s.s_graphiks"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <BiLogoInstagram size="20" />
+                <span>Instagram</span>
+              </a>
+              <a
+                href="https://wa.me/+2348169349195"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <BiLogoWhatsapp size="20" />
+                <span>WhatsApp</span>
+              </a>
+              <a
+                href="https://t.me/shedy101"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <BiLogoTelegram size="20" />
+                <span>Telegram</span>
+              </a>
+            </HomeContact>
+          </HomeProfileContainer>
+
+          <HomeQuotes>
+            <div>
+              <BiSolidQuoteAltLeft />
+              <span>Design is not just an art, its a lifestyle.</span>
+              <BiSolidQuoteAltRight />
+            </div>
+            <div>
+              <span>-S.S Graphics</span>
+            </div>
+          </HomeQuotes>
+        </HomeMainContainer>
+        <Scroll>
+          <span>scroll down</span>
+          <BiArrowToBottom />
+        </Scroll>
+      </HomePage>
+    </>
+  );
 }
 
 const HomePage = styled.div`
