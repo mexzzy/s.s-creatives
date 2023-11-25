@@ -6,12 +6,15 @@ import img2 from "../images/image-2.jpg";
 import img3 from "../images/image-3.png";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.css";
+import { BiColorFill, BiDroplet } from "react-icons/bi";
 
 export default function About() {
   return (
     <>
       <AboutPage>
-        <Title>About</Title>
+        <div className="AboutPageBackground">
+          <Title>About</Title>
+        </div>
         <Paragraph>
           <div>
             <span>
@@ -20,7 +23,7 @@ export default function About() {
               captivating designs, combining talent, innovation, and a passion
               for aesthetics to deliver remarkable results. With designs done
               for 30+ brands and years of experience in the design field, we are
-              capable of elevating brands sales, activity,and outlook with our
+              capable of elevating brands sales, activity and outlook with our
               eye-catching designs. So what are you waiting for? Let's get
               designing!
             </span>
@@ -32,39 +35,47 @@ export default function About() {
           <ColorBoardCombine>
             <ColorBlock>
               <Color>
-                <i class="fi fi-rr-fill"></i>
+                <BiColorFill size="25" color="#fff" />
               </Color>
               <ColorContainer>
                 <div>
                   <div>
-                    <i class="fi fi-rr-eye-dropper"></i>
+                    <BiDroplet size="20" color="#fff" />
                   </div>
                   <span>#389FE1</span>
                 </div>
                 <div>
                   <div>
-                    <i class="fi fi-rr-eye-dropper"></i>
+                    <BiDroplet size="20" color="#fff" />
                   </div>
                   <span>#003DA7</span>
                 </div>
                 <div>
                   <div>
-                    <i class="fi fi-rr-eye-dropper"></i>
+                    <BiDroplet size="20" color="#fff" />
                   </div>
                   <span>#031357</span>
                 </div>
               </ColorContainer>
             </ColorBlock>
             <ColorDescription>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil
-              unde, minus magnam laboriosam similique eaque assumenda. Quam
-              cupiditate quisquam ab error quidem tenetur facere accusamus
-              numquam atque! Neque quia et animi enim? Deserunt nemo architecto
-              deleniti labore reiciendis distinctio dolore, autem enim harum
-              consectetur fuga, odio, cupiditate excepturi ducimus adipisci sint
-              sapiente rem eum sequi illum! Eos fugit quos fuga molestiae
-              accusantium nam placeat, atque voluptatum illum beatae dolorem
-              earum?
+              <span> Sky Blue: </span>
+              represents a cool and calm aesthetics as implemented in our
+              designs. It serves as a reminder that the sky is not the limit,
+              but just the beginning of how we express our ideas, imagination,
+              intuition and creativity as graphic designers.
+              <br />
+              <br />
+              <span>Royal Blue: </span>
+              showcases the expression of our beauty, class and style. A
+              luxurious brand designs and rich in quality is how royal blue
+              tells the story of S.S Graphics.
+              <br />
+              <br />
+              <span>Navy Blue: </span>
+              the world's most popular colour is also part of pur brand colours
+              as it represents trust and stability of our brand. It evokes
+              feeling of of tradition and convention.
             </ColorDescription>
           </ColorBoardCombine>
         </BrandColor>
@@ -85,10 +96,11 @@ export default function About() {
                 <SubTitle>slogan and core values</SubTitle>
                 <TabContainer>
                   <Slogan>
-                    <span>slogan: </span>Lorem ipsum dolor sit amet.
+                    <span>Slogan: </span>Lets get designing eye-catching
+                    designs.
                   </Slogan>
                   <Core>
-                    <span>core values: </span>Lorem ipsum dolor sit amet
+                    <span>Core Values: </span>Lorem ipsum dolor sit amet
                     consectetur adipisicing elit. Asperiores blanditiis
                     excepturi nostrum velit reprehenderit officiis eos adipisci
                     architecto aliquam quam.
@@ -239,10 +251,9 @@ const AboutPage = styled.div`
   background: #fff;
 `;
 const Title = styled.h1`
-  /* text-align: center; */
-  font-size: 30px;
+  font-size: 20px;
   font-weight: bold;
-  color: #000 !important;
+  color: #353535;
 `;
 // PARAGRAPH
 const Paragraph = styled.div`
@@ -280,7 +291,7 @@ const BrandColor = styled.div`
 `;
 const SubTitle = styled.div`
   text-transform: capitalize;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   color: rgb(7, 7, 80) !important;
   background-color: rgba(14, 14, 68, 0.2);
@@ -394,6 +405,11 @@ const ColorBoardCombine = styled.div`
 const ColorDescription = styled.div`
   color: #000;
   width: 50%;
+  span {
+    color: rgb(7, 7, 80);
+    font-size: 16px;
+    font-weight: 600;
+  }
   @media (max-width: 768px) {
     width: 100%;
   }
@@ -495,7 +511,7 @@ const ServiceList = styled.div`
         font-weight: 600;
         flex: 1;
       }
-      span:last-child{
+      span:last-child {
         color: #000;
         flex: 2;
       }
@@ -503,7 +519,7 @@ const ServiceList = styled.div`
   }
 `;
 const Number = styled.div`
-  background: rgb(0, 7, 68, 0.863); 
+  background: rgb(0, 7, 68, 0.863);
   color: #fff !important;
   padding: 10px 15px;
   border-radius: 20px;

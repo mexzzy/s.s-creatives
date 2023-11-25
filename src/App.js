@@ -1,19 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 import { styled } from "styled-components";
-import { Routes, Route, Link } from "react-router-dom";
 import logo from "./images/LOGO.png";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Works from "./pages/Works";
 import Resume from "./pages/Resume";
-import Page404 from "./pages/Page404";
+
+import coverBg from "../src/images/coverBg.png";
 
 function App() {
   const [showDiv, setShowDiv] = useState(false);
   const buttonRef = useRef();
-  const [activeLink, setActiveLink] = useState("/");
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -31,72 +30,52 @@ function App() {
     setShowDiv(!showDiv);
   };
 
-  const handleLinkClick = (link) => {
-    setActiveLink(link);
-  };
-
   return (
     <>
       <Application>
-        <NavBar >
-          <img src={logo} alt="logo" />
-          <MenuToggle ref={buttonRef} onClick={handleButtonClick}>
-            <i className="fi fi-sr-menu-burger"></i>
-          </MenuToggle>
-          <div className={`Nav ${showDiv ? "show" : ""}`}>
-            <Link
-              to="/"
-              className={`Link ${activeLink === "/" ? "active" : ""}`}
-              onClick={() => handleLinkClick("/")}
-            >
-              <i className="fi fi-sr-house-window"></i>
-              <span>Home</span>
-            </Link>
-            <Link
-              to="/about"
-              className={`Link ${activeLink === "/about" ? "active" : ""}`}
-              onClick={() => handleLinkClick("/about")}
-            >
-              <i class="fi fi-ss-user"></i>
-              <span>About</span>
-            </Link>
-            <Link
-              to="/contact"
-              className={`Link ${activeLink === "/contact" ? "active" : ""}`}
-              onClick={() => handleLinkClick("/contact")}
-            >
-              <i className="fi fi-sr-square-phone-hangup"></i>
-              <span>Contact</span>
-            </Link>
-            <Link
-              to="/works"
-              className={`Link ${activeLink === "/works" ? "active" : ""}`}
-              onClick={() => handleLinkClick("/works")}
-            >
-              <i className="fi fi-sr-edit-alt"></i>
-              <span>Work</span>
-            </Link>
-            <Link
-              to="/resume"
-              className={`Link ${activeLink === "/resume" ? "active" : ""}`}
-              onClick={() => handleLinkClick("/resume")}
-            >
-              <i className="fi fi-sr-document"></i>
-              <span>Resum&eacute;</span>
-            </Link>
-          </div>
-        </NavBar>
-        <DisplayPageRoute>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/works" element={<Works />} />
-            <Route path="/resume" element={<Resume />} />
-            <Route path="*" element={<Page404 />} />
-          </Routes>
-        </DisplayPageRoute>
+        <span id="home">
+          <NavBar>
+            <img src={logo} alt="logo" />
+            <MenuToggle ref={buttonRef} onClick={handleButtonClick}>
+              <i className="fi fi-sr-menu-burger"></i>
+            </MenuToggle>
+            <MenuList>
+              <>
+                <a href="#home">
+                  <span>Home</span>
+                </a>
+                <a href="#about">
+                  <span>About</span>
+                </a>
+                <a href="#contact">
+                  <span>Contact</span>
+                </a>
+                <a href="#works">
+                  <span>Works</span>
+                </a>
+                <a href="#resume">
+                  <span>Resum&eacute;</span>
+                </a>
+              </>
+            </MenuList>
+          </NavBar>
+          <Home />
+        </span>
       </Application>
+      <DisplayPageRoute>
+        <span id="about">
+          <About />
+        </span>
+        <span id="contact">
+          <Contact />
+        </span>
+        <span id="works">
+          <Works />
+        </span>
+        <span id="resume">
+          <Resume />
+        </span>
+      </DisplayPageRoute>
     </>
   );
 }
@@ -104,14 +83,12 @@ function App() {
 export default App;
 
 const Application = styled.div`
-  background-image: linear-gradient(
-    to left top,
-    rgb(0, 7, 68),
-    #000f92,
-    #389fe1
-  );
+  height: 100vh;
   width: 100%;
-  height: auto;
+  background-image: linear-gradient(#00000037, #00000037), url(${coverBg});
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 `;
 
 const NavBar = styled.nav`
@@ -119,18 +96,13 @@ const NavBar = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: 10px 3%;
-  transition: all 1s ease ;
+  transition: all 1s ease;
   z-index: 3;
+  box-shadow: 1px 1px 10px #00000040;
+  backdrop-filter: blur(3px);
 
-  @media (max-width: 768px) {
-    position: ${props => (props.fixed ? 'fixed' : 'static')};
-    background: ${props => (props.background ? " rgba(12, 12, 110, 0.199) " : "transparent")};
-    width: ${props => (props.width ? "100%" : "auto")};
-    backdrop-filter: blur(30px);
-    top: 0;
-  }
   img {
-    width: 80px;
+    width: 60px;
     @media (max-width: 768px) {
       width: 50px;
     }
@@ -148,14 +120,26 @@ const MenuToggle = styled.div`
     rgba(14, 14, 68, 0.142)
   );
   backdrop-filter: blur(5px);
-  padding: 10px;
+  padding: 15px;
   border-radius: 5px;
   border: 1px solid rgba(119, 130, 230, 0.068);
   display: none;
   cursor: pointer;
-  box-shadow: 1px 2px 10px 2px rgba(0, 0, 0, 0.485);
 
   @media (max-width: 768px) {
     display: block;
+  }
+`;
+const MenuList = styled.div`
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  text-decoration: none;
+  a {
+    color: #fff;
+
+    &:hover {
+      font-size: 17px;
+    }
   }
 `;
